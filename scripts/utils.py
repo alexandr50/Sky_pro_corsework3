@@ -1,8 +1,7 @@
 import json
 from datetime import datetime
-from pprint import pprint
 
-FILE_NAME = 'data_file.json'
+FILE_NAME = 'data/data_file.json'
 
 
 def get_correct_date_for_sort(data: str):
@@ -22,7 +21,8 @@ def sorted_func_for_date(file):
                     i['date'] = get_correct_date_for_sort(value)
 
     res.sort(key=lambda x: datetime.strptime(x.get('date', '2000-01-01 00:00'), "%Y-%m-%d %H:%M"), reverse=True)
-    return res
+    return res[:5]
+
 
 
 def correct_date_for_output(date):
