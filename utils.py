@@ -1,5 +1,8 @@
 import json
 from datetime import datetime
+from pprint import pprint
+
+FILE_NAME = 'data_file.json'
 
 
 def get_correct_date_for_sort(data: str):
@@ -32,22 +35,34 @@ def correct_date_for_output(date):
 
 def correct_number_card(card):
     """Функция для корректного отображения карты клиента"""
-    number = card[-16:]
-    word = card[:-17]
-    number_for_output = ''
-    for i, j in enumerate(number):
-        if 6 <= i <= 12 and i % 4 != 0:
-            number_for_output += '*'
-        elif i % 4 == 0 and i != 0:
-            if 6 <= i <= 11:
-                number_for_output += ' '
+    if card:
+        number = card[-16:]
+        word = card[:-17]
+        number_for_output = ''
+        for i, j in enumerate(number):
+            if 6 <= i <= 12 and i % 4 != 0:
                 number_for_output += '*'
+            elif i % 4 == 0 and i != 0:
+                if 6 <= i <= 11:
+                    number_for_output += ' '
+                    number_for_output += '*'
+                else:
+                    number_for_output += ' '
+                    number_for_output += j
             else:
-                number_for_output += ' '
                 number_for_output += j
-        else:
-            number_for_output += j
-    return f'{word} {number_for_output}'
+        return f'{word} {number_for_output}'
+    return ''
+
+def get_correct_bill(bill):
+    """Функция для корректного отображения счета"""
+    end = 0
+    for i, j in enumerate(bill):
+        if j.isdigit():
+            end = i - 1
+            break
+    return f'{bill[:end]} **{bill[-4:]}'
+
 
 
 
