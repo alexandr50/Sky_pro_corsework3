@@ -10,6 +10,10 @@ packages = [{include = "sky_pro_corsework3"}]
 python = "^3.10"
 
 
+[tool.poetry.group.dev.dependencies]
+coverage = "^7.1.0"
+requests = "^2.28.2"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
